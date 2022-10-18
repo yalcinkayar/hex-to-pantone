@@ -1,0 +1,47 @@
+.main-container{
+  margin:100px;
+}
+#box-left{
+  float:left;
+  margin:60px;
+  height:200px;
+  width:150px;;
+}
+#box-middle{
+  float:left;
+  margin:60px;
+  display:flex;
+  flex-direction: column;
+}
+#box-right{
+  float:left;
+  margin:60px;
+  height:200px;
+  width:150px;;
+}
+.header{
+  margin-left: 350px;
+  color: #363636;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+#hex-title{
+  float:left;
+}
+#hex-text{
+  float:left;
+  margin:10px;
+}
+#rgba-title{
+  float:left;
+  margin-top:30px;;
+}
+#rgba-text{
+  float:left;
+  margin:10px;
+}
+#pantone-box{
+  height:200px;
+  width:150px;;
+}

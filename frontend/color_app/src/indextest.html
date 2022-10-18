@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#hex").change(function(){
+                    var hexCode = document.getElementById('hex').value;
+               
+                    document.getElementById('colorpicker').value = hexCode;
+                    if(hexCode.includes('#')){
+                        hexCode = hexCode.replace('#', '');
+                    }
+                    var r = parseInt(hexCode.substr(1,2), 16);
+                    var g = parseInt(hexCode.substr(3,2), 16);
+                    var b = parseInt(hexCode.substr(5,2), 16);
+                    document.getElementById('pantone').value = 'rgba('+r+', '+b+', '+g+')';
+                    
+                    $.get(`http://127.0.0.1:8000/api/colordata/`+hexCode, function(res){
+                        document.getElementById('pantone').value = 'rgba('+res.data.red+', '+res.data.blue+', '+res.data.green+')';                       
+                    });
+                });
+                $("#colorpicker").change(function(){
+                    var color = document.getElementById('colorpicker').value;
+                    document.getElementById('hex').value = color;
+                    
+                    if(color.includes('#')){
+                        color = color.replace('#', '');
+                    }
+                    
+                    $.get(`http://127.0.0.1:8000/api/colordata/`+color, function(res){
+                        document.getElementById('pantone').value = 'rgba('+res.data.red+', '+res.data.blue+', '+res.data.green+')';
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <label for="colorpicker">Select your color:</label>
+        <input type="color" id="colorpicker" style="width:180px; height:200px;" value="#ff0000"> <br><br>
+
+        <label for="hex">Hex Value</label>
+        <input type="text" id="hex">
+
+        <label for="pantone">Pantone Value</label>
+        <input type="text" id="pantone">
+        
+        
+    </body>
+</html>
